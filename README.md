@@ -60,7 +60,7 @@ Download Link mm10: [External Download Link](https://wangftp.wustl.edu/~nshah/rn
 `wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3877.bed`  
 `wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3875.bed`  
 ### TElocal
-`wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal`*You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  `python setup.py install`  
+`wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal`  *You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  `python setup.py install`  
 `wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/GRCh38.p13.genome.fa.gz`  
 `wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz`
 
