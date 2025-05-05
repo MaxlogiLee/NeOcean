@@ -3,7 +3,8 @@ NeOcean is a tumor neoantigen analysis platform that integrates proteogenomic st
 # Outline
 # Requirements
 ## 1.Software
-Each step is executed in a separate environment.
+Each step is executed in a separate environment.  
+All of the software tools listed above can be installed individually. This pipeline has only been tested with the specified versions, and newer versions may cause errors or unexpected behavior.
 ### 1.1 Generate BAM file
 STAR >= 2.7.11b
 samtools >= 1.21
@@ -41,5 +42,5 @@ samtools >= 1.3.1
 cufflinks >= 2.2.1  
 python 2.7 (cPickle, pytabix 0.1)  
 R >= 3.4.1 (ggplot2, bsgenome.hsapiens.ucsc.hg38 (or genome of your choosing), Xmisc, reshape2)  
-  
-The all above can be installed individually. The pipeline has only been tested for the versions listed and may break with newer versions.
+It is recommended to follow the official website for installing TEprof2: https://github.com/twlab/TEProf2Paper.
+
