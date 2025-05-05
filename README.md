@@ -94,19 +94,20 @@ This will generate 2 files: (1) genecode_plus.dic and (2) genecode_minus.dic
 `genecode_introns.py <OUTPUT_sorted.gtf>`  
 This will generate 2 files: (1) <OUTPUT_sorted.gtf>_introns_plus and (2) <OUTPUT_sorted.gtf>_introns_minus  
 3.Sort the intron annotations bed file  
-`sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_plus > <OUTPUT_sorted.gtf>_introns_plus_sorted  sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_minus > <OUTPUT_sorted.gtf>_introns_minus_sorted
-`  
+`sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_plus > <OUTPUT_sorted.gtf>_introns_plus_sorted`  
+`sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_minus > <OUTPUT_sorted.gtf>_introns_minus_sorted`  
 4.bgzip the file (bgzip comes with samtools)  
-`bgzip <OUTPUT_sorted.gtf>_introns_plus_sorted > <OUTPUT_sorted.gtf>_introns_plus_sorted.gz  bgzip <OUTPUT_sorted.gtf>_introns_minus_sorted > <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
+`bgzip <OUTPUT_sorted.gtf>_introns_plus_sorted > <OUTPUT_sorted.gtf>_introns_plus_sorted.gz`  
+`bgzip <OUTPUT_sorted.gtf>_introns_minus_sorted > <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
 5.Create tabix index  
-`tabix -p bed <OUTPUT_sorted.gtf>_introns_plus_sorted.gz  tabix -p bed <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
+`tabix -p bed <OUTPUT_sorted.gtf>_introns_plus_sorted.gz`  tabix -p bed <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
 6.Both the bgzipped file and the tabix index need to be in the same folder  
 #### (E)Gene Filter List
 For large sets of analysis, it might be computationally advantageous to limit the analysis to only a small set of genes for subsequent analysis. Create a file with a genesymbol per line. Example:  
-`TP63  
+TP63  
 GAPDH  
 SYT1  
-PKIB`  
+PKIB  
 #### Input files at runtime
 *aggregateProcessedAnnotation.R*  
 `wget https://raw.githubusercontent.com/twlab/TEProf2Paper/main/bin/aggregateProcessedAnnotation.R`  
@@ -133,3 +134,7 @@ PKIB`
 `wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/translationPart1.R`  
 *rmsk_annotate_bedpe_speed.py*  
 `wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/rmsk_annotate_bedpe_speed.py`  
+# Usage
+
+
+
