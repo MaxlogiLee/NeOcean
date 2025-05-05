@@ -108,7 +108,7 @@ TP63
 GAPDH  
 SYT1  
 PKIB  
-#### Input files at runtime
+#### (F)Input files at runtime
 *aggregateProcessedAnnotation.R*  
 `wget https://raw.githubusercontent.com/twlab/TEProf2Paper/main/bin/aggregateProcessedAnnotation.R`  
 *annotationtpmprocess.py*  
@@ -135,6 +135,6 @@ PKIB
 *rmsk_annotate_bedpe_speed.py*  
 `wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/rmsk_annotate_bedpe_speed.py`  
 # Usage
-
-
-
+Once all files and environment configurations are ready, we can proceed to run the pipeline.  
+## Quick Run
+`nohup bash NeOcean.sh`  
