@@ -63,4 +63,32 @@ Download Link mm10: [External Download Link](https://wangftp.wustl.edu/~nshah/rn
 `wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal`  *You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  `python setup.py install`  
 `wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/GRCh38.p13.genome.fa.gz`  
 `wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz`
-
+### De novo
+`wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.primary_assembly.annotation.gtf.gz`
+### TEProf2
+`wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.primary_assembly.annotation.gtf.gz`  
+*aggregateProcessedAnnotation.R*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/main/bin/aggregateProcessedAnnotation.R`  
+*annotationtpmprocess.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/annotationtpmprocess.py`  
+*arguments.txt*
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/arguments.txt`  
+**The reference files in arguments.txt need to be replaced with the actual paths to your own files.**  
+*commandsmax_speed.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/commandsmax_speed.py`  
+*filterReadCandidates.R*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/filterReadCandidates.R`  
+*finalStatisticsOutput.R*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/finalStatisticsOutput.R`  
+*mergeAnnotationProcess.R*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/mergeAnnotationProcess.R`  
+*rmskhg38_annotate_gtf_update_test_tpm.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/rmskhg38_annotate_gtf_update_test_tpm.py`  
+*rmskhg38_annotate_gtf_update_test_tpm_cuff.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/rmskhg38_annotate_gtf_update_test_tpm_cuff.py`  
+*stringtieExpressionFrac.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/stringtieExpressionFrac.py`  
+*translationPart1.R*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/translationPart1.R`  
+*rmsk_annotate_bedpe_speed.py*  
+`wget https://raw.githubusercontent.com/twlab/TEProf2Paper/refs/heads/main/bin/rmsk_annotate_bedpe_speed.py`  
