@@ -42,7 +42,10 @@ samtools >= 1.3.1
 cufflinks >= 2.2.1  
 python 2.7 (cPickle, pytabix 0.1)  
 R >= 3.4.1 (ggplot2, bsgenome.hsapiens.ucsc.hg38 (or genome of your choosing), Xmisc, reshape2)  
-*It is recommended to follow the official website for installing TEprof2: https://github.com/twlab/TEProf2Paper.*
+**It is recommended to follow the official website for installing TEprof2: https://github.com/twlab/TEProf2Paper.**
 ## Reference Files
-
+### Defaults
+Download Link hg38: External Download Link  
+Download Link hg19: External Download Link  
+Download Link mm10: External Download Link  
 
