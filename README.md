@@ -137,4 +137,5 @@ PKIB
 # Usage
 Once all files and environment configurations are ready, we can proceed to run the pipeline.  
 ## Quick Run
+**It is recommended to use the shell script we provided for direct execution.**  
 `nohup bash NeOcean.sh`  
