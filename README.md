@@ -164,15 +164,23 @@ Run the following command
 `nohup bash NeOcean.sh &`  
 **You can also split the scripts and run them individually by following these steps**  
 ## (1) Generate BAM file  
-`nohup bash generate_bam.sh &`  
+`nohup bash generate_bam.sh &` 
+Note:The generate_bam.sh script includes two sub-scripts: star_1pass_n.sh and star_2pass_unsorted_rv.sh.  
+> 
 ### Input File(s)
 (1)GRCh38.primary_assembly.genome.fa  
 (2)Homo_sapiens.GRCh38.113.gtf  
 (3)raw data(fasta)  
 ### Output File(s)  
-(1)*sample*.sorted.2passAligned.out.bam  
-(1)*sample*.sorted.2passAligned.out.bam.bai  
-(3)*sample*.stringtie.gtf  
+(1)STAR_ensemble
+> Index directory (contains multiple .sjdb*, .genome* files)
+
+(2)*sample*.SJ.out.tab
+> The 1-pass script primarily generates files for use in subsequent 2-pass builds of the splice junction index.
+
+(2)*sample*.sorted.2passAligned.out.bam  
+(3)*sample*.sorted.2passAligned.out.bam.bai  
+(4)*sample*.stringtie.gtf  
 ## (2) Fusion detection
 `nohup bash fusion.sh &`  
 ### Input File(s)
