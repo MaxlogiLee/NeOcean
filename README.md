@@ -99,8 +99,10 @@ This will generate 2 files: (1) genecode_plus.dic and (2) genecode_minus.dic
 `genecode_introns.py <OUTPUT_sorted.gtf>`  
 This will generate 2 files: (1) <OUTPUT_sorted.gtf>_introns_plus and (2) <OUTPUT_sorted.gtf>_introns_minus  
 3.Sort the intron annotations bed file  
-`sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_plus > <OUTPUT_sorted.gtf>_introns_plus_sorted`  
-`sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_minus > <OUTPUT_sorted.gtf>_introns_minus_sorted`  
+```
+sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_plus > <OUTPUT_sorted.gtf>_introns_plus_sorted  
+sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_minus > <OUTPUT_sorted.gtf>_introns_minus_sorted  
+```
 4.bgzip the file (bgzip comes with samtools)  
 `bgzip <OUTPUT_sorted.gtf>_introns_plus_sorted > <OUTPUT_sorted.gtf>_introns_plus_sorted.gz`  
 `bgzip <OUTPUT_sorted.gtf>_introns_minus_sorted > <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
@@ -161,9 +163,9 @@ Run the following command
 ### Input File(s)
 (1)config.txt  
 (2)*sample*_list.txt
-(3)raw data(fasta)
+(3)raw data(fasta)  
 ### Output File(s)
-(1)*sample*_fusion.getorf.fa
+(1)*sample*_fusion.getorf.fa  
 ## (3) Intron retention
 `nohup bash IR.sh &`  
 ### Input File(s)  
@@ -182,18 +184,20 @@ Run the following command
 (4)GRCh38_GENCODE_rmsk_TE.gtf.locInd.locations  
 (5)GRCh38.p13.genome.fa.gz  
 ### Output File(s)
-(1)*sample*_TElocal.getorf.fa
+(1)*sample*_TElocal.getorf.fa  
 ## (5) De novo
 `nohup bash DN.sh &`  
 ### Input File(s)  
 (1)*sample*.sorted.2passAligned.out.bam  
-(2)gencode.v42.primary_assembly.annotation.gtf
+(2)gencode.v42.primary_assembly.annotation.gtf  
 (3)GRCh38.primary_assembly.genome.fa  
 ### Output File(s)  
 (1)*sample*_de_novo.getorf.fa  
 ## (6) TEProf2
 `nohup bash DN.sh &`  
 ### Input File(s)  
-(1)
-
+(1)*sample*.sorted.2passAligned.out.bam 
+(2)*sample*.stringtie.gtf  
+(3)arguments.txt
+****
 ****
