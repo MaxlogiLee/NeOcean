@@ -211,6 +211,14 @@ Run the following command
 ### Input File(s)  
 (1)*sample*.sorted.2passAligned.out.bam 
 (2)*sample*.stringtie.gtf  
-(3)arguments.txt
+(3)arguments.txt  
+Note:
+> These are all the arguments that are needed. The following arguments.txt file would work:
+```
+rmsk	rmskhg38.bed6.gz
+rmskannotationfile repeatmasker_description_uniq.lst
+gencodeplusdic	genecode_plus_hg38.dic
+gencodeminusdic	genecode_minus_hg38.dic
+```
 ****
 ****
