@@ -221,7 +221,8 @@ gencodeplusdic	genecode_plus_hg38.dic
 gencodeminusdic	genecode_minus_hg38.dic
 ```
 Note：
-> The following Arguments are available(If you don't need these options, delete）
+> The following Arguments are available(If you don't need these options, delete)
+
 **focusgenes:** The program has two outputs (1) on a focus set of genes (2) with all genes. This file lists the genes that the user wants to filter for originally (Gene Filter List)  
 **plusintron:** Tabix file of all the plus strand introns (Intron Annotations)  
 **minusintron:** Tabix file of all the minus strand introns (Intron Annotations)
