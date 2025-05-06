@@ -204,7 +204,8 @@ Run the following command
 (1)*sample*.sorted.2passAligned.out.bam  
 (2)gencode.v42.primary_assembly.annotation.gtf  
 (3)GRCh38.primary_assembly.genome.fa  
-### Output File(s)  
+### Output File(s)
+
 (1)*sample*_de_novo.getorf.fa  
 ## (6) TEProf2
 `nohup bash DN.sh &`  
@@ -228,5 +229,5 @@ Note：
 **minusintron:** Tabix file of all the minus strand introns (Intron Annotations)
 (4)All TEProF2 Required R Script Files
 ### Output File(s)  
-(1)*sample*_TEprof2.getorf.fa
-***Please go to the official documentation for the intermediate files that run all of the above R scripts.***
+(1)*sample*_TEprof2.getorf.fa  
+***Please go to the official documentation for the intermediate files that run all of the above R scripts.(Except for De novo）***
