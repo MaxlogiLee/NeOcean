@@ -61,7 +61,7 @@ Download Link mm10: [External Download Link](https://wangftp.wustl.edu/~nshah/rn
 `wget ftp://ftp.ensembl.org/pub/release-77/gtf/homo_sapiens/Homo_sapiens.GRCh38.77.gtf.gz`  
 `wget ftp://ftp.ensembl.org/pub/release-77/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz`  
 `wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3877.bed`  
-`wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3875.bed`  
+`wget https://raw.githubusercontent.com/genemine/iread/refs/heads/master/meta/intron_mouse_3875.bed`  
 ### (4) TElocal
 `wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal`  *You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  
 `python setup.py install`  
@@ -69,6 +69,7 @@ Download Link mm10: [External Download Link](https://wangftp.wustl.edu/~nshah/rn
 `wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz`
 ### (5) De novo
 `wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.primary_assembly.annotation.gtf.gz`  
+`wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.primary_assembly.genome.fa.gz`
 ### (6) TEProf2
 All of the following files are from:https://github.com/twlab/TEProf2Paper  
 #### (A) Gencode Dictionary
@@ -142,29 +143,57 @@ PKIB
 Once all files and environment configurations are ready, we can proceed to run the pipeline.  
 ## Quick Run
 **It is recommended to use the shell script we provided for direct execution.**  
-Run the following command  
-`nohup bash NeOcean.sh &` 
+Run the following command   
+`nohup bash NeOcean.sh &`  
 **You can also split the scripts and run them individually by following these steps**  
-## (1) Generate BAM file
+## (1) Generate BAM file  
 `nohup bash generate_bam.sh &`  
 ### Input File(s)
 (1)GRCh38.primary_assembly.genome.fa  
 (2)Homo_sapiens.GRCh38.113.gtf  
 (3)raw data(fasta)  
 ### Output File(s)  
-(1)<sample>.sorted.2passAligned.out.bam  
-(1)<sample>.sorted.2passAligned.out.bam.bai  
-(3)<sample>.stringtie.gtf  
+(1)*sample*.sorted.2passAligned.out.bam  
+(1)*sample*.sorted.2passAligned.out.bam.bai  
+(3)*sample*.stringtie.gtf  
 ## (2) Fusion detection
 `nohup bash fusion.sh &`  
 ### Input File(s)
-
+(1)config.txt  
+(2)*sample*_list.txt
+(3)raw data(fasta)
 ### Output File(s)
+(1)*sample*_fusion.getorf.fa
 ## (3) Intron retention
 `nohup bash IR.sh &`  
+### Input File(s)  
+(1)raw data(fasta)  
+(2)intron_human_3877.bed(intron_mouse_3875.bed)  
+(3)Homo_sapiens.GRCh38.77.gtf.gz  
+(4)Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz  
+### Output File(s)  
+(1)*sample*_IR.getorf.fa  
 ## (4) TElocal
 `nohup bash TElocal.sh &`  
+### Input File(s)  
+(1)*sample*.sorted.2passAligned.out.bam  
+(2)gencode.v42.annotation.gtf  
+(3)GRCh38_GENCODE_rmsk_TE.gtf.locInd  
+(4)GRCh38_GENCODE_rmsk_TE.gtf.locInd.locations  
+(5)GRCh38.p13.genome.fa.gz  
+### Output File(s)
+(1)*sample*_TElocal.getorf.fa
 ## (5) De novo
-`nohup bash DN.sh &`
+`nohup bash DN.sh &`  
+### Input File(s)  
+(1)*sample*.sorted.2passAligned.out.bam  
+(2)gencode.v42.primary_assembly.annotation.gtf
+(3)GRCh38.primary_assembly.genome.fa  
+### Output File(s)  
+(1)*sample*_de_novo.getorf.fa  
 ## (6) TEProf2
 `nohup bash DN.sh &`  
+### Input File(s)  
+(1)
+
+****
