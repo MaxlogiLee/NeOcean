@@ -226,3 +226,7 @@ Note：
 **focusgenes:** The program has two outputs (1) on a focus set of genes (2) with all genes. This file lists the genes that the user wants to filter for originally (Gene Filter List)  
 **plusintron:** Tabix file of all the plus strand introns (Intron Annotations)  
 **minusintron:** Tabix file of all the minus strand introns (Intron Annotations)
+(4)All TEProF2 Required R Script Files
+### Output File(s)  
+(1)*sample*_TEprof2.getorf.fa
+***Please go to the official documentation for the intermediate files that run all of the above R scripts.***
