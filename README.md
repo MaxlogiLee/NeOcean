@@ -53,23 +53,31 @@ Download Link mm10: [External Download Link](https://wangftp.wustl.edu/~nshah/rn
 [Download Link Homo_sapiens.GRCh38.113.gtf](https://ftp.ensembl.org/pub/release-113/gtf/homo_sapiens/Homo_sapiens.GRCh38.113.gtf.gz)
 [Download Link Mus_musculus.GRCm39.113.gtf](https://ftp.ensembl.org/pub/release-113/gtf/mus_musculus/Mus_musculus.GRCm39.113.gtf.gz)
 ### (2) Fusion detection
-```wget https://sourceforge.net/projects/soapfuse/files/SOAPfuse_Package/SOAPfuse-v1.27.tar.gz  
+```
+wget https://sourceforge.net/projects/soapfuse/files/SOAPfuse_Package/SOAPfuse-v1.27.tar.gz  
 wget ftp://ftp.ensembl.org/pub/release-110/gtf/homo_sapiens/Homo_sapiens.GRCh38.110.chr.gtf.gz  
-wget ftp://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/cytoBand.txt.gz``` 
+wget ftp://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/cytoBand.txt.gz  
+``` 
 ### (3) Intron retention
-`wget https://raw.githubusercontent.com/genemine/iread/refs/heads/master/iread.py `  
-`wget ftp://ftp.ensembl.org/pub/release-77/gtf/homo_sapiens/Homo_sapiens.GRCh38.77.gtf.gz`  
-`wget ftp://ftp.ensembl.org/pub/release-77/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz`  
-`wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3877.bed`  
-`wget https://raw.githubusercontent.com/genemine/iread/refs/heads/master/meta/intron_mouse_3875.bed`  
+```
+wget https://raw.githubusercontent.com/genemine/iread/refs/heads/master/iread.py  
+wget ftp://ftp.ensembl.org/pub/release-77/gtf/homo_sapiens/Homo_sapiens.GRCh38.77.gtf.gz  
+wget ftp://ftp.ensembl.org/pub/release-77/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz  
+wget https://raw.githubusercontent.com/genemine/iread/master/meta/intron_human_3877.bed  
+wget https://raw.githubusercontent.com/genemine/iread/refs/heads/master/meta/intron_mouse_3875.bed
+```
 ### (4) TElocal
-`wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal`  *You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  
-`python setup.py install`  
-`wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/GRCh38.p13.genome.fa.gz`  
-`wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz`
+```
+wget https://raw.githubusercontent.com/mhammell-laboratory/TElocal/refs/heads/master/TElocal  *You can download the software using wget, or refer to the setup.py file on GitHub(https://github.com/mhammell-laboratory/TElocal/blob/master/setup.py) and install it directly using the command:  
+python setup.py install  
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/GRCh38.p13.genome.fa.gz  
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.annotation.gtf.gz
+```
 ### (5) De novo
-`wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.primary_assembly.annotation.gtf.gz`  
-`wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.primary_assembly.genome.fa.gz`
+```
+wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_42/gencode.v42.primary_assembly.annotation.gtf.gz  
+wget https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_47/GRCh38.primary_assembly.genome.fa.gz  
+```
 ### (6) TEProf2
 All of the following files are from:https://github.com/twlab/TEProf2Paper  
 #### (A) Gencode Dictionary
@@ -104,10 +112,15 @@ sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_plus > <OUTPUT_sorted.gtf>_
 sort -k1,1 -k2,2n -k3,3n <OUTPUT_sorted.gtf>_introns_minus > <OUTPUT_sorted.gtf>_introns_minus_sorted  
 ```
 4.bgzip the file (bgzip comes with samtools)  
-`bgzip <OUTPUT_sorted.gtf>_introns_plus_sorted > <OUTPUT_sorted.gtf>_introns_plus_sorted.gz`  
-`bgzip <OUTPUT_sorted.gtf>_introns_minus_sorted > <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
+```
+bgzip <OUTPUT_sorted.gtf>_introns_plus_sorted > <OUTPUT_sorted.gtf>_introns_plus_sorted.gz  
+bgzip <OUTPUT_sorted.gtf>_introns_minus_sorted > <OUTPUT_sorted.gtf>_introns_minus_sorted.gz
+```
 5.Create tabix index  
-`tabix -p bed <OUTPUT_sorted.gtf>_introns_plus_sorted.gz`  tabix -p bed <OUTPUT_sorted.gtf>_introns_minus_sorted.gz`  
+```
+tabix -p bed <OUTPUT_sorted.gtf>_introns_plus_sorted.gz  
+tabix -p bed <OUTPUT_sorted.gtf>_introns_minus_sorted.gz
+```
 6.Both the bgzipped file and the tabix index need to be in the same folder  
 #### (E) Gene Filter List
 For large sets of analysis, it might be computationally advantageous to limit the analysis to only a small set of genes for subsequent analysis. Create a file with a genesymbol per line. Example:   
