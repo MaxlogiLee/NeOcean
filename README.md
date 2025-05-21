@@ -162,13 +162,13 @@ Once all files and environment configurations are ready, we can proceed to run t
 **It is recommended to use the shell script we provided for direct execution.**  
 Run the following command   
 `nohup bash NeOcean.sh &`  
-Since the script 'NeOcean.sh' activates the environment multiple times, you need to add source '/path/conda.sh' at the very beginning of the script.  You can find the path to 'conda.sh' by running the command:  
-'''
+**Since the script 'NeOcean.sh' activates the environment multiple times, you need to add source '/path/conda.sh' at the very beginning of the script.  You can find the path to 'conda.sh' by running the command:**  
+```
 conda info | grep 'base environment'  
 Example output:base environment : /public/home/miniconda3  (writable)  
 Then your "conda.sh" is located at:/public/home/miniconda3/etc/profile.d/conda.sh  
 source /public/home/lijing/miniconda3/etc/profile.d/conda.sh  
-'''
+```
 **You can also split the scripts and run them individually by following these steps**  
 ## (1) Generate BAM file  
 `nohup bash generate_bam.sh &` 
