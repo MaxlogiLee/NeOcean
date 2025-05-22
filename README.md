@@ -327,4 +327,20 @@ Note：
 (4)All TEProF2 Required R Script Files
 ### Output File(s)  
 (1)*sample*_TEprof2.getorf.fa  
-***Please go to the official documentation for the intermediate files that run all of the above R scripts.***
+***Please go to the official documentation for the intermediate files that run all of the above R scripts.***  
+## (7)Peptide Screening  
+### Step 0:Directory Setup + Data Preparation  
+Create a structured directory and copy getorf files from various sources.  
+### Step 1:Run MS Processing Script (R)  
+Extract peptide sequences from raw mass spectrometry results and generate a peptide list.  
+### Step 2:Perform Peptide Grep  
+Compare the identified MS peptides against translated sequences from multiple sources.  
+### Step 3:Genomic Coordinate Annotation (Optional)  
+Map sequences matched in DN / TE back to genomic coordinates.  
+### Step 4:Integrate Grep Results + MS Data  
+Merge grep results with MS data, add source annotations, and generate final analysis tables.  
+### Step 5:Further Process Unmatched Peptides  
+Fragment unmatched MS peptides and perform another round of UniProt grep.  
+### Step 6:Generate Final Annotation Tables (cis/trans classification)  
+Output cis- and trans-derived neoantigen peptide tables.  
+
