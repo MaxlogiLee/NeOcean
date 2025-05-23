@@ -171,9 +171,8 @@ source /public/home/lijing/miniconda3/etc/profile.d/conda.sh
 ```
 **You can also split the scripts and run them individually by following these steps**  
 ## (1) Generate BAM file  
-`nohup bash generate_bam.sh &` 
+`nohup bash generate_bam.sh &`   
 Note:The generate_bam.sh script includes two sub-scripts: star_1pass_n.sh and star_2pass_unsorted_rv.sh.  
-> 
 ### Input File(s)
 (1)GRCh38.primary_assembly.genome.fa  
 (2)Homo_sapiens.GRCh38.113.gtf  
