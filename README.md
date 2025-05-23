@@ -305,7 +305,7 @@ Note:The generate_bam.sh script includes two sub-scripts: star_1pass_n.sh and st
 (6)*sample*_de_novo.getorf.fa  
 > All ORFs (≥24 bp, starting with ATG) predicted from the de novo transcript sequences, used for peptide prediction, translation, or immunogenicity analysis.  
 ## (6) TEProf2  
-`nohup bash DN.sh &`  
+`nohup bash TEprof2.sh &`  
 ### Input File(s)  
 (1)*sample*.sorted.2passAligned.out.bam  
 (2)*sample*.stringtie.gtf  
