@@ -1,6 +1,5 @@
 # NeOcean
 NeOcean is a tumor neoantigen analysis platform that integrates proteogenomic strategies to overcome the limitations of traditional approaches relying solely on DNA mutation burden. By incorporating gene fusions, intron retention, chimeric transcripts, and transposable elements, and validating peptides via HLA-pulldown mass spectrometry, NeOcean enables the high-efficiency identification of non-canonical neoantigens, with a detection rate nearly a thousand times higher than conventional methods. It features an optimized RNA-seq analysis pipeline, machine learning–based neoantigen prediction, and high-throughput mass spectrometry validation. Systematic analyses across tumor types reveal distinct sequence features and conserved expression patterns of non-canonical neoantigens. Ongoing functional studies will further evaluate their immunogenic potential, providing a new framework for neoantigen-based cancer immunotherapy.  
-# Outline
 # Requirements
 ## 1.Software
 Each step is executed in a separate environment.  
@@ -328,8 +327,14 @@ Note：
 (1)*sample*_TEprof2.getorf.fa  
 ***Please go to the official documentation for the intermediate files that run all of the above R scripts.***  
 ## (7)Peptide Screening  
+Before performing peptide screening, we need a list file of candidate neoantigen peptides: `sample_peptide_list.txt`.
+We will search for potential neoantigen peptides across the databases.   
 ### Step 0:Directory Setup + Data Preparation  
 Create a structured directory and copy getorf files from various sources.  
+example:  
+```
+ Rscript MS_results.R
+```
 ### Step 1:Run MS Processing Script (R)  
 Extract peptide sequences from raw mass spectrometry results and generate a peptide list.  
 ### Step 2:Perform Peptide Grep  
