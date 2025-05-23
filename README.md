@@ -331,20 +331,188 @@ Before performing peptide screening, we need a list file of candidate neoantigen
 We will search for potential neoantigen peptides across the databases.   
 ### Step 0:Directory Setup + Data Preparation  
 Create a structured directory and copy getorf files from various sources.  
-example:  
+ > It is recommended to merge a multi-line sequence of database files into a single line
+
+### Step 1:Run MS Processing Script (R)  
+Extract peptide sequences from raw mass spectrometry results and generate a peptide list.  
+**example:**  
 ```
  Rscript MS_results.R
 ```
-### Step 1:Run MS Processing Script (R)  
-Extract peptide sequences from raw mass spectrometry results and generate a peptide list.  
+#### Input File(s)
+sample_HLA.xlsx  
+> Mass spectrometry files obtained by sequencing
+#### Output File(s)
+(1)sample_peptide_list.txt  
+> Peptide list: one per line, without column names, without quotes, for subsequent comparison grep
+
+(2)sp_file.txt  
+> List of sample names (one per line)
+
+(3)database_file.txt  
+> List of database names
+
+(4)sample.xlsx  
+> Mass spectrometry peptide table (columns e.g. Peptide_raw, Peptide, Length, MS_sample)
+
 ### Step 2:Perform Peptide Grep  
 Compare the identified MS peptides against translated sequences from multiple sources.  
+**example:**   
+```
+Rscript peptide_grep_code.R sample_peptide_list.txt BN BN.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt NCBI NCBI.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt uniprot uniprot.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt Mutation Mutation.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt Fusion sample_fusion.getorf.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt IR sample_IR.getorf.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt TElocal sample_TElocal.getorf.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt TEprof2 sample_TEprof2.getorf.fa FALSE res/sample
+Rscript peptide_grep_code.R sample_peptide_list.txt DN sample_de_novo.getorf.fa FALSE res/sample
+```
+#### Input File(s)
+(1)database.fa  
+(2)sample_peptide_list.txt  
+#### Output File(s)
+(1)sample_grep.txt  
+> Comparison results table containing the original peptide, whether it matches in this database, and where it matches (with FASTA header)
+
 ### Step 3:Genomic Coordinate Annotation (Optional)  
-Map sequences matched in DN / TE back to genomic coordinates.  
+Map sequences matched in DN / TE back to genomic coordinates. 
+**example:**  
+```
+Rscript gtf2refBed.R sample_de_novo_merged_candidates.gtf sample_de_novo_merged_candidates.refbed
+Rscript DN_or_TEprof2_to_chromosome_Location.R DN_grep.txt sample_de_novo_merged_candidates.refbed DN2loc_grep.txt FALSE
+grep "exon" sample.stringtie.gtf > sample.stringtie_exon.gtf
+Rscript gtf2refBed.R sample.stringtie_exon.gtf sample.stringtie.refbed
+Rscript DN_or_TEprof2_to_chromosome_Location.R TEprof2_grep.txt sample.stringtie.refbed TEprof22loc_grep.txt FALSE
+```
+#### Input File(s)
+(1)sample_de_novo_merged_candidates.gtf 
+> cuffmerge merged GTF files (newly spliced transcripts)
+
+(2)DN_grep.txt  
+> Comparison of Denovo translation products by peptide_grep_code.R
+
+(3)sample.stringtie.gtf
+> GTF file stitched by stringtie for TEprof2 scripts
+
+(4)TEprof2_grep.txt
+>Comparison of TEprof2 translation products by peptide_grep_code.R
+
+#### Output File(s)  
+(1)sample_de_novo_merged_candidates.refbed  
+> Convert GTF to BED-like format and extract transcript ID, chromosome, start/stop sites, strand orientation, etc. for coordinate matching.
+
+(2)DN2loc_grep.txt
+> Adds the coordinates of the genomic location to the DN results to form a table of annotatable neoantigenic sites.
+
+(3)sample.stringtie_exon.gtf
+> Extract all exon annotations, as TE area analyses are usually positioned in exon units.
+
+(4)DN2loc_grep.txt
+> Adds the coordinates of the genomic location to the TEprof2 results to form a table of annotatable neoantigenic sites.
+
 ### Step 4:Integrate Grep Results + MS Data  
 Merge grep results with MS data, add source annotations, and generate final analysis tables.  
+**example:**  
+```
+Rscript Integrate_result.R sample.xlsx sp_file.txt database_file.txt
+```
+#### Input File(s)
+(1)sample.xlsx  
+> Mass spectrometry peptide table generated from the previous process (columns e.g. Peptide_raw, Peptide, Length, MS_sample)
+
+(2)sp_file.txt
+> Sample name list file, one sample name per line
+
+(3)database_file.txt  
+> List of database tags (e.g. Fusion, Mutation, IR2loc, DN2loc, TEprof22loc, etc.)
+
+#### Output File(s)   
+(1)
+```
+res/1_Fusion_MS_result_<n>.xls
+res/2_IR_MS_result_<n>.xls
+res/3_DN_MS_result_<n>.xls
+res/4_TEprof2_MS_result_<n>.xls
+...
+```
+> Each file contains the peptides from the MS data that were successfully matched to a specific database.  
+<n> indicates the number of matched peptides.  
+Included columns: Peptide, Peptide_raw, Length, MS_sample, and Database_sample.
+
+(2)0_Unmatched_MS_result_*.xlsx
+> All peptide tables that do not match any database.
+
+(3)0_Unmatched_MS_result_*_peplist.txt
+> Contains only unmatched peptide sequences.
+
+(4)Uniport_cut_peptide.txt
+> Combination of cut peptides (for next re-match).
+
+(5)Uniport_cut_peptidelist.txt
+> All de-weighted peptide segments fragments
+
 ### Step 5:Further Process Unmatched Peptides  
 Fragment unmatched MS peptides and perform another round of UniProt grep.  
+**example:**  
+```
+python reverse_fasta.py  
+seqkit seq -w 0 Decoy_uniprotkb.fasta > Decoy_merge_uniprotkb.fasta  
+Rscript target_decoy_Calculate_FDR.R Uniport_cut_peptidelist.txt res 0.05 uniprot.fa Decoy_merge_uniprotkb.fasta  
+Rscript peptide_grep_code.R target_decoy target_decoy_signif_sequences.txt Uniport_cut uniprot.fa FLASE res/sample  
+```
+#### Input File(s)  
+(1)uniprot.fa
+> UniProt Original Protein Sequence Files (FASTA).
+
+#### Output File(s)  
+(1)Decoy_uniprotkb.fasta  
+> Decoy FASTA file after all sequences are reversed (note: this file may be multi-line)
+
+(2)Decoy_merge_uniprotkb.fast  
+> Combine the Decoy FASTA sequences obtained in the previous step into one line
+
+(3)target_decoy_result.xls  
+> Contains the number of hits per peptide in target/decoy + calculated FDR value
+
+(4)target_decoy_signif_sequences.txt  
+> List of peptides with FDR < 0.05 (will be used to grep again)
+
+(5)Uniport_cut_grep.txt
+>peptide_grep_code.R results (which high-confidence peptides match in which sequences)
+
 ### Step 6:Generate Final Annotation Tables (cis/trans classification)  
 Output cis- and trans-derived neoantigen peptide tables.  
+**example:**  
+```
+Rscript peptide_grep_code.R target_decoy target_decoy_signif_sequences.txt Uniport_cut uniprot.fa FLASE res/sample
+```
+#### Input File(s)  
+(1)res/Uniport_cut_grep.txt  
+> The grep results of high-confidence peptides in the UniProt database, including matched sequence IDs and positions.
 
+(2)Uniport_cut_peptide.txt  
+> Cut peptide pairs (Sequence1 + Sequence2), each pair forms a complete peptide sequence.
+
+(3)target_decoy_result.xls  
+> Contains the number of matches for each cut peptide in the Target and Decoy databases, and the corresponding FDR (False Discovery Rate).
+
+(4)0_unmatched_MS_result.xlsx  
+> Original MS peptide information that was not matched to any database (includes MS_sample presence columns).
+
+#### Output File(s)  
+(1)Cis_Peptide_annotation.xlsx  
+> All new antigenic peptides recognised as Cis splice (consecutive on the same UniProt entry).
+
+(2)Trans_Peptide_annotation.xlsx  
+> All new antigenic peptides recognised as Trans splices (spliced across UniProt entries).
+
+(3)10_cis_MS_result_<n>.xls 
+> Peptides from MS data where cis-spliced peptides were identified in at least one sample.
+
+(4)10_trans_MS_result_<n>.xls  
+> Peptides from MS data where trans-spliced peptides are identified in at least one sample.
+
+(5)res/11_ungreped_MS_result_<n>_peplist.xls  
+> Remaining peptides not hit by any grep (not cis/trans)    
