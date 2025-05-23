@@ -79,8 +79,8 @@ trans_res=unique(trans_res)
 trans_res=trans_res[,intersect(c("Peptide","Peptide_raw","Length","Found.By",paste("MS_",sp,sep=""),paste("Trans","_",sp,sep="")),colnames(trans_res))]
 
 ms=dat[!is.element(dat$Peptide,union(cis_res$Peptide,trans_tab$Peptide)),]
-write.table(cis_res,paste("res/10_","cis","_MS_",nrow(cis_res),".xls",sep=""),sep="\t",row.names = F,quote = F)
-write.table(trans_res,paste("res/10_","trans","_MS_",nrow(trans_res),".xls",sep=""),sep="\t",row.names = F,quote = F)
-write.table(ms,paste("res/11_","ungreped","_MS_",nrow(ms),"_peplist.xls",sep=""),sep="\t",row.names = F,quote = F)
+write.table(cis_res,paste("res/10_","cis","_MS_result_",nrow(cis_res),".xls",sep=""),sep="\t",row.names = F,quote = F)
+write.table(trans_res,paste("res/10_","trans","_MS_result_",nrow(trans_res),".xls",sep=""),sep="\t",row.names = F,quote = F)
+write.table(ms,paste("res/11_","ungreped","_MS_result_",nrow(ms),"_peplist.xls",sep=""),sep="\t",row.names = F,quote = F)
 
 
