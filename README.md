@@ -514,5 +514,5 @@ Rscript peptide_grep_code.R target_decoy target_decoy_signif_sequences.txt Unipo
 (4)10_trans_MS_result_<n>.xls  
 > Peptides from MS data where trans-spliced peptides are identified in at least one sample.
 
-(5)res/11_ungreped_MS_result_<n>_peplist.xls  
+(5)11_ungreped_MS_result_<n>_peplist.xls  
 > Remaining peptides not hit by any grep (not cis/trans)    
