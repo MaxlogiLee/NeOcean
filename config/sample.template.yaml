@@ -1,0 +1,44 @@
+# ==============================================================================
+# NeOcean Pipeline - Per-Sample Configuration Template
+# Create one YAML per sample (or use a samples.csv for batch mode).
+# ==============================================================================
+
+sample:
+  name: "MCJ"                          # Unique sample identifier
+  work_dir: "/path/to/workspace/MCJ"   # Sample-specific output directory
+  
+  # Sequencing data information
+  sequencing_type: "RNA-seq"           # RNA-seq / WGS / WES
+  
+  # Paired-end RNA-seq clean data (after trim)
+  rna:
+    fq1: "${sample.work_dir}/trim/RNA/MCJ_1.fq.gz"
+    fq2: "${sample.work_dir}/trim/RNA/MCJ_2.fq.gz"
+    read_length: 150
+    strandness: "RF"                   # RF / FR / unstranded
+  
+  # Optional: WGS/WES data for mutation module
+  dna:
+    tumor_bam: "${sample.work_dir}/data/WES/tumor.bam"
+    normal_bam: "${sample.work_dir}/data/WES/normal.bam"  # Optional
+    vcf: ""                            # Optional: external VCF input
+  
+  # HLA typing results (required for mutation neoantigen prediction)
+  hla:
+    alleles: []                        # e.g. ["HLA-A*02:01", "HLA-B*07:02"]
+    hla_file: ""                      # Alternative: path to HLA result file
+
+  # Mass spectrometry processing options
+  ms:
+    no_il_transform: false             # Set to true to skip I/L amino acid transformation
+  
+  # Panel of Normal (PON) for tumor-only mutation calling
+  pon:
+    pon_vcf: ""                       # Path to PON VCF (optional)
+
+# ------------------------------------------------------------------------------
+# Module overrides (optional: override global module switches for this sample)
+# ------------------------------------------------------------------------------
+module_overrides:
+  # mutation: false    # Skip mutation for this sample
+  # teprof2: false     # Skip TEProf2 for this sample

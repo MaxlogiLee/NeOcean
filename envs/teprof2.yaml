@@ -1,0 +1,16 @@
+# NeOcean: TEProf2 Conda Environment
+# Preserved original environment name: teprof2
+name: teprof2
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=2.7
+  - r-base=4.1
+  - bedtools
+  - samtools
+  - parallel
+  - pip
+  - pip:
+    # Add any pip-only packages here

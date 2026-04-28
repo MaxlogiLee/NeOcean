@@ -1,0 +1,85 @@
+# ==============================================================================
+# NeOcean Pipeline - Global Configuration Template
+# Copy this file and modify paths for your server environment.
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Neocean Installation Paths
+# ------------------------------------------------------------------------------
+neocean:
+  root_dir: "/path/to/neocean"           # Git repository root
+  resource_dir: "/path/to/neocean_resources"  # External resources (Reference, TEprof2, etc.)
+
+# ------------------------------------------------------------------------------
+# Reference Genomes & Annotations
+# ------------------------------------------------------------------------------
+reference:
+  genome_fasta: "${neocean.resource_dir}/Reference/GRCh38.primary_assembly.genome.fa"
+  star_index: "${neocean.resource_dir}/Reference/STAR_index"
+  gtf: "${neocean.resource_dir}/Reference/gencode.v42.primary_assembly.annotation.gtf"
+  gtf_telocal: "${neocean.resource_dir}/Reference/gencode.v42.annotation.gtf"
+  te_index: "${neocean.resource_dir}/Reference/GRCh38_GENCODE_rmsk_TE.gtf.locInd"
+  te_locations: "${neocean.resource_dir}/Reference/GRCh38_GENCODE_rmsk_TE.gtf.locInd.locations"
+  iread_bed: "${neocean.resource_dir}/iREAD/meta/intron_human_3877.bed"
+
+# ------------------------------------------------------------------------------
+# Module-Specific Resource Paths
+# ------------------------------------------------------------------------------
+resources:
+  teprof2:
+    bin_dir: "${neocean.resource_dir}/TEprof2/bin"
+    doc_dir: "${neocean.resource_dir}/TEprof2/documents"
+    arguments: "${neocean.resource_dir}/TEprof2/bin/arguments.txt"
+  soapfuse:
+    program_dir: "${neocean.resource_dir}/SOAPfuse/program/SOAPfuse-v1.27"
+    database_dir: "${neocean.resource_dir}/SOAPfuse/hg38"
+    config: "${neocean.resource_dir}/SOAPfuse/SOAPfuse_config.txt"
+  iread:
+    program_dir: "${neocean.resource_dir}/iREAD/iread-master"
+  mutation:
+    seq2hla: "${neocean.resource_dir}/seq2HLA-master/seq2HLA.py"
+    dbsnp: "${neocean.resource_dir}/Reference/dbsnp_146.hg38.vcf.gz"
+    gnomad: "${neocean.resource_dir}/Reference/gnomad.genomes.v3.1.2.hg38.vcf.gz"
+    vep_cache: "${neocean.resource_dir}/Reference/vep_cache"
+    vep_plugins: "${neocean.resource_dir}/Reference/vep_plugins"
+    iedb_dir: "${neocean.resource_dir}/iedb"
+  grep:
+    code_dir: "${neocean.resource_dir}/Grep/code"
+    bn_fasta: "${neocean.resource_dir}/Grep/BN/BN_processed.fa"
+    uniprot_fasta: "${neocean.resource_dir}/Grep/Uniport/uniprot_protein.fa"
+    ncbi_fasta: "${neocean.resource_dir}/Grep/NCBI/ncbi_protein.fa"
+
+# ------------------------------------------------------------------------------
+# Conda Environments (preserve original names)
+# ------------------------------------------------------------------------------
+conda_envs:
+  teprof2: "teprof2"
+  cufflinks: "cufflinks_env"
+  denovo: "de_nove"
+  telocal: "telocal-xly"
+  seq2hla: "seq2hla"
+  base: "base"
+
+# ------------------------------------------------------------------------------
+# Computational Resources
+# ------------------------------------------------------------------------------
+compute:
+  threads: 40
+  parallel_jobs: 5
+  memory_gb: 128
+  star_threads: 20
+  stringtie_threads: 20
+
+# ------------------------------------------------------------------------------
+# Module Switches (enable/disable modules globally)
+# ------------------------------------------------------------------------------
+modules:
+  preprocess: true
+  fusion: true
+  intron_retention: true
+  telocal: true
+  denovo: true
+  teprof2: true
+  mutation: true
+  build_bn: false      # Run once per project, not per sample
+  peptide_screening: true

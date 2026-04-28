@@ -1,0 +1,11 @@
+# NeOcean: Cufflinks Conda Environment
+# Preserved original environment name: cufflinks_env
+name: cufflinks_env
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - cufflinks
+  - gffread
+  - samtools
