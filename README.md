@@ -1,7 +1,5 @@
 # NeOcean: Tumor Neoantigen Discovery Pipeline v2.0
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
 NeOcean is a standardized, modular computational pipeline for discovering tumor-specific neoantigens from RNA sequencing and mass spectrometry data. It integrates multiple analytical approaches including de novo transcript assembly, transposable element expression, intron retention, gene fusion detection, and somatic mutation analysis to comprehensively profile potential neoantigen sources.
 
 ## Features
