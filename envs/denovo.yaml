@@ -1,0 +1,10 @@
+# NeOcean: De Novo / EMBOSS Conda Environment
+# Preserved original environment name: de_nove
+name: de_nove
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - emboss  # provides getorf
+  - seqkit

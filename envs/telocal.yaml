@@ -1,0 +1,11 @@
+# NeOcean: TElocal Conda Environment
+# Preserved original environment name: telocal-xly
+name: telocal-xly
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - telocal
+  - bedtools
+  - samtools
